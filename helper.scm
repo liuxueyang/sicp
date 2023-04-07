@@ -1,0 +1,7 @@
+(define (square n) (* n n))
+(define (zero? n) (= n 0))
+(define (even? n) (= 0 (remainder n 2)))
+(define (odd? n) (not (even? n)))
+(define (half n) (/ n 2))
+(define (1- n) (- n 1))
+(define (1+ n) (+ n 1))
