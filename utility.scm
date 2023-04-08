@@ -3,6 +3,10 @@
 (define (1- n) (- n 1))
 (define (1+ n) (+ n 1))
 
+(define (average x y)
+  (/ (+ x y)
+     2))
+
 (define (id a) a)
 
 (define (gcd a b)
@@ -34,3 +38,14 @@
           ((fermat-test n) (fast-prime? n (1- times)))
           (else #f)))
   (fast-prime? n 5))
+
+(define (fixed-point f first-guess)
+  (define (close-enough? x y)
+    (< (abs (- x y))
+       tolerance))
+  (define (try x)
+    (let ((next (f x)))
+      (if (close-enough? x next)
+          next
+          (try next))))
+  (try first-guess))
