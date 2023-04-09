@@ -41,12 +41,32 @@
   (fast-prime? n 5))
 
 (define (fixed-point f first-guess)
+  (define tolerance 0.00001)
+
   (define (close-enough? x y)
     (< (abs (- x y))
        tolerance))
+
   (define (try x)
     (let ((next (f x)))
       (if (close-enough? x next)
           next
           (try next))))
+
   (try first-guess))
+
+(define (newton-method g guess)
+  (define (deriv g)
+    (define dx 0.00001)
+
+    (lambda (x)
+      (/ (- (g (+ x dx))
+            (g x))
+         dx)))
+
+  (define (newton-transform g)
+    (lambda (x)
+      (- x (/ (g x)
+              ((deriv g) x)))))
+
+  (fixed-point (newton-transform g) guess))
