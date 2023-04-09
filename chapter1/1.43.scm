@@ -1,4 +1,4 @@
-(load "chapter1/1.42")
+(load "chapter1/1.42.scm")
 
 (define (repeated f n)
   (if (= 1 n)

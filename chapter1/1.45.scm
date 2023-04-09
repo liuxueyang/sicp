@@ -1,0 +1,41 @@
+(load "chapter1/1.43.scm")
+(load "chapter1/fixed_point")
+
+(define (sqrt-3 x)
+  (fixed-point (average-damp (lambda (y)
+                               (/ x (square y))))
+               1.0))
+
+(define (sqrt-4 x)
+  (fixed-point ((repeated average-damp 2)
+                (lambda (y)
+                  (/ x (cube y))))
+               1.0))
+
+(define (sqrt-5 x)
+  (fixed-point ((repeated average-damp 2)
+                (lambda (y)
+                  (/ x (expt y 4))))
+               1.0))
+
+(define (sqrt-6 x)
+  (fixed-point ((repeated average-damp 2)
+                (lambda (y)
+                  (/ x (expt y 5))))
+               1.0))
+
+(define (sqrt-n x n)
+  (fixed-point ((repeated average-damp 2)
+                (lambda (y)
+                  (/ x (expt y (1- n)))))
+               1.0))
+
+(sqrt-n (expt 2 3) 3)
+(sqrt-n (expt 2 4) 4)
+(sqrt-n (expt 2 5) 5)
+(sqrt-n (expt 2 6) 6)
+
+(sqrt-n (expt 3 3) 3)
+(sqrt-n (expt 3 4) 4)
+(sqrt-n (expt 3 5) 5)
+(sqrt-n (expt 3 6) 6)
