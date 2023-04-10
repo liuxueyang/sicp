@@ -3,6 +3,7 @@
 (define (double n) (+ n n))
 (define (1- n) (- n 1))
 (define (1+ n) (+ n 1))
+(define (divides? a b) (zero? (remainder b a)))
 
 (define (average x y)
   (/ (+ x y)
