@@ -1,3 +1,4 @@
+(define nil ())
 (define (half n) (/ n 2))
 (define (halve n) (/ n 2))
 (define (double n) (+ n n))
