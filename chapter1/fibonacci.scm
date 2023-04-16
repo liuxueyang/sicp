@@ -6,3 +6,5 @@
 
 (define (fib n)
   (fib-iter 0 1 n))
+
+(fib 3)
