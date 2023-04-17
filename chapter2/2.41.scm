@@ -1,0 +1,26 @@
+(load "chapter2/2.40.scm")
+
+(define (ordered-triples n)
+  (flatmap append
+           (map (lambda (i)
+                  (map (lambda (p) (append p (list i)))
+                       (unique-pairs (1- i))))
+                (enumerate-interval 1 n))))
+
+(ordered-triples 4)
+;; ((1 2 3)
+;;  (1 2 4)
+;;  (1 3 4)
+;;  (2 3 4))
+
+(ordered-triples 5)
+;; ((1 2 3)
+;;  (1 2 4)
+;;  (1 3 4)
+;;  (2 3 4)
+;;  (1 2 5)
+;;  (1 3 5)
+;;  (2 3 5)
+;;  (1 4 5)
+;;  (2 4 5)
+;;  (3 4 5))
