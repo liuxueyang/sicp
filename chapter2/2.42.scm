@@ -10,25 +10,22 @@
               (append result
                       (list (list (car positions) k))))))
 
-  (define (addp x)
-    (+ (car x)
-       (cadr x)))
-
-  (define (subp x)
-    (- (car x)
-       (cadr x)))
+  (define (check f x y)
+    (= (f x)
+       (f y)))
 
   (if (null? positions)
       true
       (null?
        (let ((lst (iter k positions nil)))
          (let ((x (car lst)))
-           (map car (filter (lambda (p) (or (= (car p)
-                                               (car x))
-                                            (= (addp p)
-                                               (addp x))
-                                            (= (subp p)
-                                               (subp x))))
+           (map car (filter (lambda (p) (or (check car x p)
+                                            (check (lambda (x)
+                                                     (+ (car x)
+                                                        (cadr x))) x p)
+                                            (check (lambda (x)
+                                                     (- (car x)
+                                                        (cadr x))) x p)))
                             (cdr lst))))))))
 
 (define (adjoin-position new-row k rest-of-queens)
@@ -51,3 +48,4 @@
   (queen-cols board-size))
 
 (queens 4)
+;; ((3 1 4 2) (2 4 1 3))
